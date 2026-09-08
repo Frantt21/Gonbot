@@ -62,7 +62,7 @@ class GonbotClient(commands.Bot):
             guild = discord.Object(id=server_id)
 
             # Sincroniza los comandos globalmente
-            #self.tree.copy_global_to(guild=guild)
+            self.tree.copy_global_to(guild=guild)
 
             # Sincroniza los comandos localmente
             synced = await self.tree.sync(guild=guild)
