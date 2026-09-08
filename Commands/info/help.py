@@ -13,7 +13,7 @@ class HelpCommands(commands.Cog):
     async def help(self, ctx: commands.Context):
         embed = discord.Embed(
             title="Gonbot - Comandos",
-            description="Lista de comandos disponibles:",
+            description="Prefix: `-`\nLista de comandos disponibles:",
             color=discord.Color.from_rgb(255, 0, 0)
         )
         embed.add_field(name="/ping", value="Muestra la latencia del bot", inline=False)

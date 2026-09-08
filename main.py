@@ -42,26 +42,32 @@ class GonbotClient(commands.Bot):
 
     # ciclo de vida del bot
     async def on_ready(self):
-
+        # Configurar la presencia del bot
         await self.change_presence(activity=discord.Game(name="foranly.space"), status=discord.Status.idle)
+        
+        # ASCII Art
+        ascii_art = """
+\033[97m  ▄█████▄   ▄█████▄  ██▄    ██ ███████▄   ▄█████▄  ████████  
+\033[97m ██▀   ▀▀▀ ██▀   ▀██ ███▄   ██ ██▀   ▀██ ██▀   ▀██    ██      
+\033[37m ██    ▒▒▒ ██     ██ ██▀█▄  ██ ███████   ██     ██    ██      
+\033[37m ██▄   ▄██ ██▄   ▄██ ██  ▀█▄██ ██▄   ▄██ ██▄   ▄██    ██      
+\033[90m  ▀█████▀   ▀█████▀  ██    ▀██ ███████▀   ▀█████▀     ██      \033[0m
+        """
+        print(ascii_art)
+        print(f'\033[96mLogged in as {self.user} (ID: {self.user.id})\033[0m')
 
-        print(f'Logged in as {self.user} (ID: {self.user.id})')
-        print('------')
-
-        # sincronizar los comandos del bot con Discord
+        # Sincronizar los comandos del bot localmente con tu servidor de pruebas
         try:
             server_id = SERVER_ID
             guild = discord.Object(id=server_id)
 
-            # Sincroniza los comandos globalmente
-            #self.tree.copy_global_to(guild=guild)
-
-            # Sincroniza los comandos localmente
+            # Sincroniza los comandos localmente (la línea global ha sido removida)
             synced = await self.tree.sync(guild=guild)
 
-            print(f'Synced {len(synced)} command(s)')
+            print(f'\033[92mSynced {len(synced)} command(s) locally\033[0m')
         except Exception as e:
-            print(f'Error syncing commands: {e}')
+            print(f'\033[91mError syncing commands: {e}\033[0m')
+
 
 # token de discord
 client = GonbotClient()
