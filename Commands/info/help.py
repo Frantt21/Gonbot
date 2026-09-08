@@ -16,9 +16,12 @@ class HelpCommands(commands.Cog):
             description="Prefix: `-`\nLista de comandos disponibles:",
             color=discord.Color.from_rgb(255, 0, 0)
         )
+        embed.add_field(name="**Comandos de Información**", value="", inline=False)
         embed.add_field(name="/ping", value="Muestra la latencia del bot", inline=False)
         embed.add_field(name="/help", value="Muestra la ayuda del bot", inline=False)
-        embed.set_footer(text="Gonbot - Desarrollado por Fran")
+        embed.add_field(name="**Comandos de Moderación**", value="", inline=False)
+        embed.add_field(name="/server", value="Muestra información del servidor", inline=False)
+        embed.set_footer(text="Gonbot")
         await ctx.send(embed=embed)
 
 async def setup(bot: commands.Bot):
