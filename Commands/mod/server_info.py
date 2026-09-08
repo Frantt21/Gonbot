@@ -17,14 +17,14 @@ class ServerInfoCommands(commands.Cog):
             return
 
         embed = discord.Embed(
-            title=f"Información del Servidor: {guild.name}",
+            title=f"Información del Servidor",
             color=discord.Color.from_rgb(255, 0, 0)
         )
         embed.set_thumbnail(url=guild.icon.url if guild.icon else discord.Embed.Empty)
-        embed.add_field(name="Nombre del Servidor", value=guild.name, inline=False)
-        embed.add_field(name="ID del Servidor", value=guild.id, inline=False)
-        embed.add_field(name="Miembros", value=guild.member_count, inline=False)
-        embed.set_footer(text="Gonbot - Desarrollado por Fran")
+        embed.add_field(name="Nombre del Servidor", value=f"`{guild.name}`", inline=False)
+        embed.add_field(name="ID del Servidor", value=f"`{guild.id}`", inline=False)
+        embed.add_field(name="Miembros", value=f"`{guild.member_count}`", inline=False)
+        embed.set_footer(text="Gonbot")
         await ctx.send(embed=embed)
 
 async def setup(bot: commands.Bot):
