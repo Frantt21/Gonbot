@@ -56,10 +56,13 @@ class GonbotClient(commands.Bot):
         print(ascii_art)
         print(f'\033[96mLogged in as {self.user} (ID: {self.user.id})\033[0m')
 
-        # Sincronizar los comandos del bot localmente con tu servidor de pruebas
+        # Sincronizar los comandos
         try:
             server_id = SERVER_ID
             guild = discord.Object(id=server_id)
+
+            # Sincroniza los comandos globalmente
+            #self.tree.copy_global_to(guild=guild)
 
             # Sincroniza los comandos localmente
             synced = await self.tree.sync(guild=guild)
