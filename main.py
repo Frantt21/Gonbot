@@ -7,6 +7,7 @@ import asyncio
 
 load_dotenv()
 DISCORD_TOKEN = os.getenv('DISCORD_TOKEN')
+SERVER_ID = os.getenv('DISCORD_DEV_SERVER_ID')
 
 # configuración de intents para recibir eventos de mensajes
 intents = discord.Intents.default()
@@ -21,8 +22,9 @@ if not DISCORD_TOKEN:
 # clase principal
 class GonbotClient(commands.Bot):
     def __init__(self):
-        super().__init__(command_prefix="!", intents=intents)
+        super().__init__(command_prefix="-", intents=intents, help_command=None)
 
+    # carga de extensiones
     async def setup_hook(self):
         for root, dirs, file in os.walk("./Commands"):
             for file in file:
@@ -37,7 +39,7 @@ class GonbotClient(commands.Bot):
                         print(f"Loaded extension: {extension_name}")
                     except Exception as e:
                         print(f"Failed to load extension {extension_name}: {e}")
-                        
+
     # ciclo de vida del bot
     async def on_ready(self):
 
@@ -48,7 +50,15 @@ class GonbotClient(commands.Bot):
 
         # sincronizar los comandos del bot con Discord
         try:
-            synced = await self.tree.sync()
+            server_id = SERVER_ID
+            guild = discord.Object(id=server_id)
+
+            # Sincroniza los comandos globalmente
+            #self.tree.copy_global_to(guild=guild)
+
+            # Sincroniza los comandos localmente
+            synced = await self.tree.sync(guild=guild)
+
             print(f'Synced {len(synced)} command(s)')
         except Exception as e:
             print(f'Error syncing commands: {e}')
