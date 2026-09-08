@@ -61,7 +61,7 @@ class GonbotClient(commands.Bot):
             server_id = SERVER_ID
             guild = discord.Object(id=server_id)
 
-            # Sincroniza los comandos localmente (la línea global ha sido removida)
+            # Sincroniza los comandos localmente
             synced = await self.tree.sync(guild=guild)
 
             print(f'\033[92mSynced {len(synced)} command(s) locally\033[0m')
