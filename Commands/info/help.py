@@ -21,6 +21,8 @@ class HelpCommands(commands.Cog):
         embed.add_field(name="/help", value="Muestra la ayuda del bot", inline=False)
         embed.add_field(name="**Comandos de Moderación**", value="", inline=False)
         embed.add_field(name="/server", value="Muestra información del servidor", inline=False)
+        embed.add_field(name="**Comandos Misceláneos**", value="", inline=False)
+        embed.add_field(name="/afk", value="Establece tu estado como AFK con una razón opcional", inline=False)
         embed.set_footer(text="Gonbot")
         await ctx.send(embed=embed)
 
